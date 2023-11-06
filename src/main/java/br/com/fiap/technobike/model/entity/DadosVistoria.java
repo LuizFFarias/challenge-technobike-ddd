@@ -22,7 +22,6 @@ public class DadosVistoria {
 	public DadosVistoria(String cpf, int opcSeguro, String bikeInteira, String numSerie, String roda, String freios,
 			String guidao, String pedais, String corrente, String clienteBike, String bikeFrente, String acessorios,
 			String videoBike, String videoPartes) {
-		super();
 		this.cpf = cpf;
 		this.opcSeguro = opcSeguro;
 		this.bikeInteira = bikeInteira;

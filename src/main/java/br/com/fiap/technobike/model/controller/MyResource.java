@@ -1,25 +1,26 @@
 package br.com.fiap.technobike.model.controller;
 
+import java.util.ArrayList;
+
+import br.com.fiap.technobike.model.entity.DadosVistoria;
+import br.com.fiap.technobike.model.repository.VistoriaRepository;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.ResponseBuilder;
 
-/**
- * Root resource (exposed at "myresource" path)
- */
-@Path("myresource")
+
+@Path("/technobike")
 public class MyResource {
-
-    /**
-     * Method handling HTTP GET requests. The returned object will be sent
-     * to the client as "text/plain" media type.
-     *
-     * @return String that will be returned as a text/plain response.
-     */
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String getIt() {
-        return "Got it!";
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findAll() {
+    	ArrayList<DadosVistoria> resposta = VistoriaRepository.findAll();
+    	ResponseBuilder response = Response.ok();
+    	response.entity(resposta);
+    	return response.build();
+    	
     }
 }
