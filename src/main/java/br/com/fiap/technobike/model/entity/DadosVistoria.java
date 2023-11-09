@@ -15,13 +15,14 @@ public class DadosVistoria {
 	private String acessorios;
 	private String videoBike;
 	private String videoPartes;
+	private String analiseVistoria;
 	
 	public DadosVistoria() {
 	}
 	
 	public DadosVistoria(String cpf, int opcSeguro, String bikeInteira, String numSerie, String roda, String freios,
 			String guidao, String pedais, String corrente, String clienteBike, String bikeFrente, String acessorios,
-			String videoBike, String videoPartes) {
+			String videoBike, String videoPartes, String analiseVistoria) {
 		this.cpf = cpf;
 		this.opcSeguro = opcSeguro;
 		this.bikeInteira = bikeInteira;
@@ -36,6 +37,7 @@ public class DadosVistoria {
 		this.acessorios = acessorios;
 		this.videoBike = videoBike;
 		this.videoPartes = videoPartes;
+		this.analiseVistoria = analiseVistoria;
 	}
 	public String getCpf() {
 		return cpf;
@@ -121,6 +123,15 @@ public class DadosVistoria {
 	public void setVideoPartes(String videoPartes) {
 		this.videoPartes = videoPartes;
 	}
+
+	public String getAnaliseVistoria() {
+		return analiseVistoria;
+	}
+
+	public void setAnaliseVistoria(String analiseVistoria) {
+		this.analiseVistoria = analiseVistoria;
+	}
+	
 	
 	
 	
