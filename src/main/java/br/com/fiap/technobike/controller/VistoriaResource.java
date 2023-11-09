@@ -1,4 +1,4 @@
-package br.com.fiap.technobike.model.controller;
+package br.com.fiap.technobike.controller;
 
 import java.util.ArrayList;
 
@@ -11,16 +11,16 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 
-
 @Path("/technobike")
-public class MyResource {
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response findAll() {
-    	ArrayList<DadosVistoria> resposta = VistoriaRepository.findAll();
-    	ResponseBuilder response = Response.ok();
-    	response.entity(resposta);
-    	return response.build();
-    	
-    }
+public class VistoriaResource {
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response findAll() {
+		ArrayList<DadosVistoria> resposta = VistoriaRepository.findAll();
+		ResponseBuilder response = Response.ok();
+		response.entity(resposta);
+		return response.build();
+}
+	
+	
 }
