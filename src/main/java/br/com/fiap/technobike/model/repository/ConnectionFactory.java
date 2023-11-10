@@ -4,10 +4,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
-
-import javax.management.RuntimeErrorException;
-
 import java.sql.Connection;
 
 public class ConnectionFactory {
@@ -61,15 +59,15 @@ public class ConnectionFactory {
 			}
 			if(this.getDriver() == null || this.getDriver().equals("")) {
 				System.out.println("Erro: nome da classe");
-				throw new RuntimeErrorException(null, "Erro: nome da classe");
+				throw new RuntimeException("Erro: nome da classe");
 			}
 			if(this.getUrl() == null || this.getUrl().equals("")) {
 				System.out.println("Erro: Url de conexao");
-				throw new RuntimeErrorException(null, "Erro: Url de conexao");
+				throw new RuntimeException("Erro: Url de conexao");
 			}
 			if(this.getUser() == null || this.getUser().equals("")) {
 				System.out.println("Erro: Usuario incorreto");
-				throw new RuntimeErrorException(null, "Erro: Usuario incorreto");
+				throw new RuntimeException("Erro: Usuario incorreto");
 			}
 			Class.forName(this.getDriver());
 			this.conexao = DriverManager.getConnection(this.getUrl(), this.getUser(), this.getPass());		
@@ -78,7 +76,7 @@ public class ConnectionFactory {
 			System.out.println("Erro nome da classe: " + e.getMessage());
 			System.exit(1);
 		}
-		catch(Exception e){
+		catch(SQLException e){
 			System.out.println("Erro no SQL: " + e.getMessage());
 			System.exit(1);
 		}
