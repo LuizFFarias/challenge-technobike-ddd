@@ -32,6 +32,7 @@ public class VistoriaRepository extends Repository {
 				dado.setVideoBike(rs.getString("videoBike"));
 				dado.setVideoPartes(rs.getString("videoPartes"));
 				dado.setAnaliseVistoria(rs.getString("analiseVistoria"));
+				dados.add(dado);
 			}
 			else {
 				return null;
@@ -43,6 +44,73 @@ public class VistoriaRepository extends Repository {
 			closeConnection();
 		}
 		return dados;
+	}
+	
+	public static DadosVistoria update(DadosVistoria dado) {
+		String 	sql = "update challenge_vistoria set opc_seguro = ?, set ft_bk_inteira = ?, set ft_bk_nmserie = ?, "
+				+ "set ft_bk_rodas = ?, set ft_bk_freios = ?, set ft_bk_guidao = ?, set ft_bk_pedais = ?, "
+				+ "set ft_bk_corrente, set ft_bk_selfie = ?, set ft_bk_frente = ?, set ft_bk_acessorio = ?, "
+				+ "set vd_bk_geral = ?, set vd_bk_partes = ?, "
+				+ "where cpf = ?";
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setInt(1, dado.getOpcSeguro());
+			ps.setString(2, dado.getBikeInteira());
+			ps.setString(3, dado.getNumSerie());
+			ps.setString(4, dado.getRoda());
+			ps.setString(5, dado.getFreios());
+			ps.setString(6, dado.getGuidao());
+			ps.setString(7, dado.getPedais());
+			ps.setString(8, dado.getCorrente());
+			ps.setString(9, dado.getClienteBike());
+			ps.setString(10, dado.getBikeFrente());
+			ps.setString(11, dado.getAcessorios());
+			ps.setString(12, dado.getVideoBike());
+			ps.setString(13, dado.getVideoPartes());
+			ps.setString(14, dado.getCpf());
+			if(ps.executeUpdate() > 0) {
+				return dado;
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Erro ao atualizar: " + e.getMessage());
+		}finally {
+			closeConnection();
+		}
+		return null;
+	}
+	public static DadosVistoria save(DadosVistoria dado) {
+		String sql = "insert into challenge_vistoria values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Em Análise')";
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setString(1, dado.getCpf());
+			ps.setInt(2, dado.getOpcSeguro());
+			ps.setString(3, dado.getBikeInteira());
+			ps.setString(4, dado.getNumSerie());
+			ps.setString(5, dado.getRoda());
+			ps.setString(6, dado.getFreios());
+			ps.setString(7, dado.getGuidao());
+			ps.setString(8, dado.getPedais());
+			ps.setString(9, dado.getCorrente());
+			ps.setString(10, dado.getClienteBike());
+			ps.setString(11, dado.getBikeFrente());
+			ps.setString(12, dado.getAcessorios());
+			ps.setString(13, dado.getVideoBike());
+			ps.setString(14, dado.getVideoPartes());
+			if(ps.executeUpdate() > 0) {
+				return dado;
+			}
+			else {
+				return null;
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Erro ao salvar: " + e.getMessage());
+		}
+		finally {
+			closeConnection();
+		}
+		return null;	
 	}
 	
 	
