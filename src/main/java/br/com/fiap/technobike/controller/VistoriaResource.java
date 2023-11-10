@@ -43,7 +43,7 @@ public class VistoriaResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response save(@Valid DadosVistoria dado) {
-		DadosVistoria resposta = VistoriaRepository.update(dado);
+		DadosVistoria resposta = VistoriaRepository.save(dado);
 		ResponseBuilder response = null;
 		if(resposta == null) {
 			response = Response.created(null);

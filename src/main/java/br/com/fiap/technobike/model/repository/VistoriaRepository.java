@@ -16,10 +16,11 @@ public class VistoriaRepository extends Repository {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			if (rs != null) {
-				DadosVistoria dado = new DadosVistoria();
+				while (rs.next()) {
+					DadosVistoria dado = new DadosVistoria();
 				dado.setCpf(rs.getString("cpf"));
 				dado.setOpcSeguro(rs.getInt("opc_Seguro"));
-				dado.setBikeInteira(rs.getString("ft_bk_bikeinteira"));
+				dado.setBikeInteira(rs.getString("ft_bk_inteira"));
 				dado.setNumSerie(rs.getString("ft_bk_nmserie"));
 				dado.setRoda(rs.getString("ft_bk_rodas"));
 				dado.setFreios(rs.getString("ft_bk_freios"));
@@ -33,6 +34,8 @@ public class VistoriaRepository extends Repository {
 				dado.setVideoPartes(rs.getString("vd_bk_partes"));
 				dado.setAnaliseVistoria(rs.getString("status_vistoria"));
 				dados.add(dado);
+				}
+				
 			}
 			else {
 				return null;
@@ -47,10 +50,10 @@ public class VistoriaRepository extends Repository {
 	}
 	
 	public static DadosVistoria update(DadosVistoria dado) {
-		String 	sql = "update challenge_vistoria set opc_seguro = ?, set ft_bk_inteira = ?, set ft_bk_nmserie = ?, "
-				+ "set ft_bk_rodas = ?, set ft_bk_freios = ?, set ft_bk_guidao = ?, set ft_bk_pedais = ?, "
-				+ "set ft_bk_corrente, set ft_bk_selfie = ?, set ft_bk_frente = ?, set ft_bk_acessorio = ?, "
-				+ "set vd_bk_geral = ?, set vd_bk_partes = ?, "
+		String 	sql = "update challenge_vistoria set opc_seguro = ?, ft_bk_inteira = ?, ft_bk_nmserie = ?, "
+				+ "ft_bk_rodas = ?, ft_bk_freios = ?, ft_bk_guidao = ?, ft_bk_pedais = ?, "
+				+ "ft_bk_corrente = ?, ft_bk_selfie = ?, ft_bk_frente = ?, ft_bk_acessorio = ?, "
+				+ "vd_bk_geral = ?, vd_bk_partes = ? "
 				+ "where cpf = ?";
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
@@ -113,29 +116,5 @@ public class VistoriaRepository extends Repository {
 		return null;	
 	}
 	
-	
-//	
-//	public static ArrayList<DadosVistoria> findAll(){
-//		ArrayList<DadosVistoria> vistoria = new ArrayList<DadosVistoria>();
-//		
-//		DadosVistoria cliente1 = new DadosVistoria();
-//		cliente1.setCpf("12345678910");
-//		cliente1.setOpcSeguro(2);
-//		cliente1.setBikeInteira("aa");
-//		cliente1.setNumSerie("aa");
-//		cliente1.setRoda("aa");
-//		cliente1.setFreios("aa");
-//		cliente1.setGuidao("aa");
-//		cliente1.setPedais("aa");
-//		cliente1.setCorrente("aa");
-//		cliente1.setClienteBike("aa");
-//		cliente1.setBikeFrente("aa");
-//		cliente1.setAcessorios("aa");
-//		cliente1.setVideoBike("aa");
-//		cliente1.setVideoPartes("aa");
-//		
-//		vistoria.add(cliente1);
-//		return vistoria;
-//	}
-	
+
 }
