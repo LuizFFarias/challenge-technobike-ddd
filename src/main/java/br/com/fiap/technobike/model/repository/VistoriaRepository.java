@@ -18,20 +18,20 @@ public class VistoriaRepository extends Repository {
 			if (rs != null) {
 				DadosVistoria dado = new DadosVistoria();
 				dado.setCpf(rs.getString("cpf"));
-				dado.setOpcSeguro(rs.getInt("opcSeguro"));
-				dado.setBikeInteira(rs.getString("bikeInteira"));
-				dado.setNumSerie(rs.getString("numSerie"));
-				dado.setRoda(rs.getString("roda"));
-				dado.setFreios(rs.getString("freios"));
-				dado.setGuidao(rs.getString("guidao"));
-				dado.setPedais(rs.getString("pedais"));
-				dado.setCorrente(rs.getString("corrente"));
-				dado.setClienteBike(rs.getString("clienteBike"));
-				dado.setBikeFrente(rs.getString("bikeFrente"));
-				dado.setAcessorios(rs.getString("acessorios"));
-				dado.setVideoBike(rs.getString("videoBike"));
-				dado.setVideoPartes(rs.getString("videoPartes"));
-				dado.setAnaliseVistoria(rs.getString("analiseVistoria"));
+				dado.setOpcSeguro(rs.getInt("opc_Seguro"));
+				dado.setBikeInteira(rs.getString("ft_bk_bikeinteira"));
+				dado.setNumSerie(rs.getString("ft_bk_nmserie"));
+				dado.setRoda(rs.getString("ft_bk_rodas"));
+				dado.setFreios(rs.getString("ft_bk_freios"));
+				dado.setGuidao(rs.getString("ft_bk_guidao"));
+				dado.setPedais(rs.getString("ft_bk_pedais"));
+				dado.setCorrente(rs.getString("ft_bk_corrente"));
+				dado.setClienteBike(rs.getString("ft_bk_selfie"));
+				dado.setBikeFrente(rs.getString("ft_bk_frente"));
+				dado.setAcessorios(rs.getString("ft_bk_acessorio"));
+				dado.setVideoBike(rs.getString("vd_bk_geral"));
+				dado.setVideoPartes(rs.getString("vd_bk_partes"));
+				dado.setAnaliseVistoria(rs.getString("status_vistoria"));
 				dados.add(dado);
 			}
 			else {

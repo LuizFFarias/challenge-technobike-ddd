@@ -30,7 +30,7 @@ public class ConnectionFactory {
 		Properties prop = new Properties();
 		FileInputStream file = null;
 		try {
-			file = new FileInputStream("./src/main/resources/application.properties");
+			file = new FileInputStream("./src/main/resources/aplication.properties");
 			prop.load(file);
 			
 			String url = prop.getProperty("datasource.url");
