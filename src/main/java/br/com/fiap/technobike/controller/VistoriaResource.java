@@ -10,6 +10,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -24,6 +25,22 @@ public class VistoriaResource {
 		ResponseBuilder response = Response.ok();
 		response.entity(resposta);
 		return response.build();
+		
+}
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/{cpf}")
+	public Response findAll(@PathParam("cpf") String cpf) {
+		ArrayList<DadosVistoria> resposta = VistoriaRepository.findOne(cpf);
+		  if (resposta != null && !resposta.isEmpty()) {
+	            System.out.println("Cpf encontrado");
+	            ResponseBuilder response = Response.ok(resposta, MediaType.APPLICATION_JSON);
+	            return response.build();
+	        } else {
+	        	System.out.println("Cliente não encintrado");
+	            ResponseBuilder response = Response.status(404);
+	            return response.build();
+	        }
 		
 }
 	@PUT

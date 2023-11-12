@@ -49,6 +49,47 @@ public class VistoriaRepository extends Repository {
 		return dados;
 	}
 	
+	public static ArrayList<DadosVistoria> findOne(String cpf){
+		ArrayList<DadosVistoria> dados = new ArrayList<DadosVistoria>();
+		String sql = "select * from challenge_vistoria where cpf = ?";
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setString(1, cpf);
+			ResultSet rs = ps.executeQuery();
+			if (rs != null) {
+				while (rs.next()) {
+					DadosVistoria dado = new DadosVistoria();
+				dado.setCpf(rs.getString("cpf"));
+				dado.setOpcSeguro(rs.getInt("opc_Seguro"));
+				dado.setBikeInteira(rs.getString("ft_bk_inteira"));
+				dado.setNumSerie(rs.getString("ft_bk_nmserie"));
+				dado.setRoda(rs.getString("ft_bk_rodas"));
+				dado.setFreios(rs.getString("ft_bk_freios"));
+				dado.setGuidao(rs.getString("ft_bk_guidao"));
+				dado.setPedais(rs.getString("ft_bk_pedais"));
+				dado.setCorrente(rs.getString("ft_bk_corrente"));
+				dado.setClienteBike(rs.getString("ft_bk_selfie"));
+				dado.setBikeFrente(rs.getString("ft_bk_frente"));
+				dado.setAcessorios(rs.getString("ft_bk_acessorio"));
+				dado.setVideoBike(rs.getString("vd_bk_geral"));
+				dado.setVideoPartes(rs.getString("vd_bk_partes"));
+				dado.setAnaliseVistoria(rs.getString("status_vistoria"));
+				dados.add(dado);
+				}
+				
+			}
+			else {
+				return null;
+			}
+		} catch (SQLException e) {
+			System.out.println("Erro ao listar: " + e.getMessage());
+		}
+		finally {
+			closeConnection();
+		}
+		return dados;
+	}
+	
 	public static DadosVistoria update(DadosVistoria dado) {
 		String 	sql = "update challenge_vistoria set opc_seguro = ?, ft_bk_inteira = ?, ft_bk_nmserie = ?, "
 				+ "ft_bk_rodas = ?, ft_bk_freios = ?, ft_bk_guidao = ?, ft_bk_pedais = ?, "
