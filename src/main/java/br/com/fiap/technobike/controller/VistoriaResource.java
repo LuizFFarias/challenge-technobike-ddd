@@ -47,7 +47,7 @@ public class VistoriaResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{cpf}")
-	public Response findAll(@PathParam("cpf") String cpf) {
+	public Response findOne(@PathParam("cpf") String cpf) {
 		ArrayList<DadosVistoria> resposta = VistoriaRepository.findOne(cpf);
 		  if (resposta != null && !resposta.isEmpty()) {
 	            System.out.println("Cpf encontrado");
