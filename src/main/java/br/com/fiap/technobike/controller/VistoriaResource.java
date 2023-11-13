@@ -11,6 +11,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -27,20 +28,24 @@ public class VistoriaResource {
 		return response.build();
 		
 }
-	@PUT
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response update(@Valid DadosVistoria dado) {
-		DadosVistoria resposta = VistoriaRepository.update(dado);
-		ResponseBuilder response = null;
-		if(resposta == null) {
-			response = Response.created(null);
-		}
-		else {
-			response = Response.status(400);
-		}
-		response.entity(resposta);
-		return response.build();
-	}
+
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/{cpf}")
+	public Response findAll(@PathParam("cpf") String cpf) {
+		ArrayList<DadosVistoria> resposta = VistoriaRepository.findOne(cpf);
+		  if (resposta != null && !resposta.isEmpty()) {
+	            System.out.println("Cpf encontrado");
+	            ResponseBuilder response = Response.ok(resposta, MediaType.APPLICATION_JSON);
+	            return response.build();
+	        } else {
+	        	System.out.println("Cliente não encontrado");
+	            ResponseBuilder response = Response.status(404);
+	            return response.build();
+	        }
+		
+}
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response save(@Valid DadosVistoria dado) {
@@ -59,8 +64,7 @@ public class VistoriaResource {
 	@Path("/feedback")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveFb(@Valid Feedback feedback) {
-		DadosVistoria dado = new DadosVistoria();
-		Feedback resposta = VistoriaRepository.saveFb(dado, feedback);
+		Feedback resposta = VistoriaRepository.saveFb(feedback);
 		if (resposta == null) {
 	        return Response.status(400).build();
 	    } else {

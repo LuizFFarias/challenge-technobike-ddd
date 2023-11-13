@@ -1,6 +1,6 @@
 package br.com.fiap.technobike.model.view;
 
-import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -78,11 +78,14 @@ public class UsaTechnobike {
 		//Iniciar processo de vistoria	
 		case 2:
 			//Identificar cliente
-//			cpf = JOptionPane.showInputDialog("Informe seu CPF: ");
-//			VistoriaRepository vistoria = new VistoriaRepository();
-//			System.out.println(vistoria.findOne(cpf));
-//			
-//			JOptionPane.showMessageDialog(null, "O CPF " + cpf + " foi encontrado. Seja bem vindo!");
+			cpf = JOptionPane.showInputDialog("Informe seu CPF: ");
+			ArrayList<DadosVistoria> busca = VistoriaRepository.findOne(cpf);
+			  if (busca != null && !busca.isEmpty()) {
+				  JOptionPane.showMessageDialog(null, "Cliente encontrado!");
+			  }	
+			  else {
+				  JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
+			  }
       
 				tentativas = 0;
 				cpfInvalido = true;
@@ -196,7 +199,6 @@ public class UsaTechnobike {
 		//Conferir status da vistoria
 		case 3:
 			//Identificar cliente
-//			try {
 				boolean cpfEncontrado = false;
 				tentativas = 0;
 				cpfInvalido = true;
@@ -216,6 +218,8 @@ public class UsaTechnobike {
 						if (tentativas == 3) {
 							cpfInvalido = false;
 						}
+						
+
 					}
 					
 					if (tentativas == 3) {
@@ -223,15 +227,18 @@ public class UsaTechnobike {
 						break;
 					}
 					
-//					ArrayList<String> consulta = cliente.buscaCliente(cpf);
-//					if (consulta == null) {
-//						JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
-//						tentativas += 1;
-//						break;
-//					} else {
-//						JOptionPane.showMessageDialog(null, "Cpf encontrado: " + consulta.get(0));
-//						cpfEncontrado = true;
-//					}
+						ArrayList<DadosVistoria> resposta = VistoriaRepository.findOne(cpf);
+					  if (resposta != null && !resposta.isEmpty()) {
+						  JOptionPane.showMessageDialog(null, "Cliente encontrado!");
+						  cpfEncontrado = true;
+						  break;
+					  }	
+					  else {
+						  JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
+						  tentativas += 1;
+						  break;
+					  }
+
 				}
 				
 				//Status da vistoria
@@ -240,16 +247,53 @@ public class UsaTechnobike {
 					andamento.resultado();
 				}
 				
-//			} catch (SQLException e) {
-//				JOptionPane.showMessageDialog(null, e.getMessage());
-//			}
-//			 catch (ClassNotFoundException e) {
-//				JOptionPane.showMessageDialog(null, e.getMessage());
-//			}
 				break;
 				
 		//Feedback
 		case 4: 
+			//Identificar cliente
+			cpfEncontrado = false;
+			tentativas = 0;
+			cpfInvalido = true;
+			
+			while (cpfEncontrado == false) {
+				
+				while (cpfInvalido == true) {
+					cpf = JOptionPane.showInputDialog("Informe seu CPF: ");
+					
+					if (cpf.length() != 11) {
+						JOptionPane.showMessageDialog(null, "Digite um cpf válido!");
+						tentativas += 1;
+					} else {
+						cpfInvalido = false;
+					}
+				
+					if (tentativas == 3) {
+						cpfInvalido = false;
+					}
+					
+
+				}
+				
+				if (tentativas == 3) {
+					JOptionPane.showMessageDialog(null, "Limite de tentativas alcançado!");
+					break;
+				}
+				
+					ArrayList<DadosVistoria> resposta = VistoriaRepository.findOne(cpf);
+				  if (resposta != null && !resposta.isEmpty()) {
+					  JOptionPane.showMessageDialog(null, "Cliente encontrado!");
+					  cpfEncontrado = true;
+					  break;
+				  }	
+				  else {
+					  JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
+					  tentativas += 1;
+					  break;
+				  }
+			}
+			if (cpfEncontrado) {
+				
 				//Tempo
 				aux = JOptionPane.showInputDialog("Digite seu feedback para tempo");
 				tempo = Integer.parseInt(aux);
@@ -278,10 +322,19 @@ public class UsaTechnobike {
 				duvidas = Integer.parseInt(aux);
 				
 				Feedback opiniao = new Feedback();
+				
+				opiniao.setTempo(tempo);
+				opiniao.setServicos(servicos);
+				opiniao.setProblemas(problemas);
+				opiniao.setAtendimentos(atendimentos);
+				opiniao.setDuvidas(duvidas);
 
 				opiniao.enviarFeedback();
-
 				opiniao.calcularMedia(tempo, servicos, problemas, atendimentos, duvidas);
+				
+				System.out.println(VistoriaRepository.saveFb(opiniao));
+			}
+				
 				break;
 			
 		//Encerrar
