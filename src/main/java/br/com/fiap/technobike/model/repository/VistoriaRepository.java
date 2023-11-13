@@ -1,14 +1,27 @@
 package br.com.fiap.technobike.model.repository;
 
 import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.fiap.technobike.model.entity.DadosVistoria;
+import br.com.fiap.technobike.model.entity.Feedback;
 
+
+/***
+ * Classe responsável pela interação com o banco de dados
+ * @author Luiz Fillipe
+ * @version 3.0
+ * */
 public class VistoriaRepository extends Repository {
 	
+/***
+ * Método que realiza a busca de todos clientes cadastrados no banco de dados e na API
+ * @author Luiz Fillipe
+ * @return ArrayList dados
+ */
 	public static ArrayList<DadosVistoria> findAll(){
 		ArrayList<DadosVistoria> dados = new ArrayList<DadosVistoria>();
 		String sql = "select * from challenge_vistoria";
@@ -20,18 +33,18 @@ public class VistoriaRepository extends Repository {
 					DadosVistoria dado = new DadosVistoria();
 				dado.setCpf(rs.getString("cpf"));
 				dado.setOpcSeguro(rs.getInt("opc_Seguro"));
-				dado.setBikeInteira(rs.getString("ft_bk_inteira"));
-				dado.setNumSerie(rs.getString("ft_bk_nmserie"));
-				dado.setRoda(rs.getString("ft_bk_rodas"));
-				dado.setFreios(rs.getString("ft_bk_freios"));
-				dado.setGuidao(rs.getString("ft_bk_guidao"));
-				dado.setPedais(rs.getString("ft_bk_pedais"));
-				dado.setCorrente(rs.getString("ft_bk_corrente"));
-				dado.setClienteBike(rs.getString("ft_bk_selfie"));
-				dado.setBikeFrente(rs.getString("ft_bk_frente"));
-				dado.setAcessorios(rs.getString("ft_bk_acessorio"));
-				dado.setVideoBike(rs.getString("vd_bk_geral"));
-				dado.setVideoPartes(rs.getString("vd_bk_partes"));
+				dado.setBikeInteira(rs.getString("bikeInteira"));
+				dado.setNumSerie(rs.getString("numSerie"));
+				dado.setRoda(rs.getString("roda"));
+				dado.setFreios(rs.getString("freios"));
+				dado.setGuidao(rs.getString("guidao"));
+				dado.setPedais(rs.getString("pedais"));
+				dado.setCorrente(rs.getString("corrente"));
+				dado.setClienteBike(rs.getString("clienteBike"));
+				dado.setBikeFrente(rs.getString("bikeFrente"));
+				dado.setAcessorios(rs.getString("acessorios"));
+				dado.setVideoBike(rs.getString("videoBike"));
+				dado.setVideoPartes(rs.getString("videoPartes"));
 				dado.setAnaliseVistoria(rs.getString("status_vistoria"));
 				dados.add(dado);
 				}
@@ -48,40 +61,58 @@ public class VistoriaRepository extends Repository {
 		}
 		return dados;
 	}
-	
-	public static DadosVistoria update(DadosVistoria dado) {
-		String 	sql = "update challenge_vistoria set opc_seguro = ?, ft_bk_inteira = ?, ft_bk_nmserie = ?, "
-				+ "ft_bk_rodas = ?, ft_bk_freios = ?, ft_bk_guidao = ?, ft_bk_pedais = ?, "
-				+ "ft_bk_corrente = ?, ft_bk_selfie = ?, ft_bk_frente = ?, ft_bk_acessorio = ?, "
-				+ "vd_bk_geral = ?, vd_bk_partes = ? "
-				+ "where cpf = ?";
+	/***
+	 * Método que realiza a busca dos clientes cadastrados por cpf no banco de dados e na API
+	 * @author Luiz Fillipe
+	 * @return ArrayList dados
+	 */
+	public static ArrayList<DadosVistoria> findOne(String cpf){
+		ArrayList<DadosVistoria> dados = new ArrayList<DadosVistoria>();
+		String sql = "select * from challenge_vistoria where cpf = ?";
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
-			ps.setInt(1, dado.getOpcSeguro());
-			ps.setString(2, dado.getBikeInteira());
-			ps.setString(3, dado.getNumSerie());
-			ps.setString(4, dado.getRoda());
-			ps.setString(5, dado.getFreios());
-			ps.setString(6, dado.getGuidao());
-			ps.setString(7, dado.getPedais());
-			ps.setString(8, dado.getCorrente());
-			ps.setString(9, dado.getClienteBike());
-			ps.setString(10, dado.getBikeFrente());
-			ps.setString(11, dado.getAcessorios());
-			ps.setString(12, dado.getVideoBike());
-			ps.setString(13, dado.getVideoPartes());
-			ps.setString(14, dado.getCpf());
-			if(ps.executeUpdate() > 0) {
-				return dado;
+			ps.setString(1, cpf);
+			ResultSet rs = ps.executeQuery();
+			if (rs != null) {
+				while (rs.next()) {
+					DadosVistoria dado = new DadosVistoria();
+					dado.setCpf(rs.getString("cpf"));
+					dado.setOpcSeguro(rs.getInt("opc_Seguro"));
+					dado.setBikeInteira(rs.getString("bikeInteira"));
+					dado.setNumSerie(rs.getString("numSerie"));
+					dado.setRoda(rs.getString("roda"));
+					dado.setFreios(rs.getString("freios"));
+					dado.setGuidao(rs.getString("guidao"));
+					dado.setPedais(rs.getString("pedais"));
+					dado.setCorrente(rs.getString("corrente"));
+					dado.setClienteBike(rs.getString("clienteBike"));
+					dado.setBikeFrente(rs.getString("bikeFrente"));
+					dado.setAcessorios(rs.getString("acessorios"));
+					dado.setVideoBike(rs.getString("videoBike"));
+					dado.setVideoPartes(rs.getString("videoPartes"));
+					dado.setAnaliseVistoria(rs.getString("status_vistoria"));
+				dados.add(dado);
+				}
+				
 			}
-			
+			else {
+				return null;
+			}
 		} catch (SQLException e) {
-			System.out.println("Erro ao atualizar: " + e.getMessage());
-		}finally {
+			System.out.println("Erro ao listar: " + e.getMessage());
+		}
+		finally {
 			closeConnection();
 		}
-		return null;
+		return dados;
 	}
+
+	/***
+	 * Método que realiza a inserção dos clientes e seus dados da vistoria cadastrados no banco de dados e na API
+	 * @author Luiz Fillipe
+	 * @return ArrayList dados
+	 */
+	
 	public static DadosVistoria save(DadosVistoria dado) {
 		String sql = "insert into challenge_vistoria values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Em Análise')";
 		try {
@@ -115,6 +146,35 @@ public class VistoriaRepository extends Repository {
 		}
 		return null;	
 	}
-	
+	/***
+	 * Método que realiza a inserção das notas do feedback realizado pelos clientes cadastrados no banco de dados e na API
+	 * @author Luiz Fillipe
+	 * @return ArrayList dados
+	 */
+	public static Feedback saveFb(Feedback feedback) {
+		String sql = "insert into challenge_feedback values(?, ?, ?, ?, ?)";
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setInt(1, feedback.getTempo());
+			ps.setInt(2, feedback.getServicos());
+			ps.setInt(3, feedback.getProblemas());
+			ps.setInt(4, feedback.getAtendimentos());
+			ps.setInt(5, feedback.getDuvidas());
+			
+			if(ps.executeUpdate() > 0) {
+				return feedback;
+			}
+			else {
+				return null;
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Erro ao salvar: " + e.getMessage());
+		}
+		finally {
+			closeConnection();
+		}
+		return null;	
+	}
 
 }

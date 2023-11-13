@@ -1,28 +1,57 @@
 package br.com.fiap.technobike.model.entity;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
+/***
+ *  Classe com atributos e métodos sobre os dados necessários para vistoria do usuário
+ * @author Luiz Fillipe
+ * @version 3.0
+ */
+
 public class DadosVistoria {
+	@NotBlank
 	private String cpf;
+	@NotNull
+	@Positive
 	private int opcSeguro;
+	@NotNull
 	private String bikeInteira;
+	@NotNull
 	private String numSerie;
+	@NotNull
 	private String roda;
+	@NotNull
 	private String freios;
+	@NotNull
 	private String guidao;
+	@NotNull
 	private String pedais;
+	@NotNull
 	private String corrente;
+	@NotNull
 	private String clienteBike;
+	@NotNull
 	private String bikeFrente;
+	@NotNull
 	private String acessorios;
+	@NotNull
 	private String videoBike;
+	@NotNull
 	private String videoPartes;
+	@NotNull
 	private String analiseVistoria;
 	
 	public DadosVistoria() {
 	}
 	
-	public DadosVistoria(String cpf, int opcSeguro, String bikeInteira, String numSerie, String roda, String freios,
-			String guidao, String pedais, String corrente, String clienteBike, String bikeFrente, String acessorios,
-			String videoBike, String videoPartes, String analiseVistoria) {
+	
+	public DadosVistoria(@NotBlank String cpf, @NotNull @Positive int opcSeguro, @NotNull String bikeInteira,
+			@NotNull String numSerie, @NotNull String roda, @NotNull String freios, @NotNull String guidao,
+			@NotNull String pedais, @NotNull String corrente, @NotNull String clienteBike, @NotNull String bikeFrente,
+			@NotNull String acessorios, @NotNull String videoBike, @NotNull String videoPartes,
+			@NotNull String analiseVistoria) {
 		this.cpf = cpf;
 		this.opcSeguro = opcSeguro;
 		this.bikeInteira = bikeInteira;
@@ -39,6 +68,8 @@ public class DadosVistoria {
 		this.videoPartes = videoPartes;
 		this.analiseVistoria = analiseVistoria;
 	}
+
+
 	public String getCpf() {
 		return cpf;
 	}
