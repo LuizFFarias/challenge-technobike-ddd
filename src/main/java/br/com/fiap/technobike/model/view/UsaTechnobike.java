@@ -77,6 +77,9 @@ public class UsaTechnobike {
 			
 		//Iniciar processo de vistoria	
 		case 2:
+			try {
+				
+			
 			//Identificar cliente
 			cpf = JOptionPane.showInputDialog("Informe seu CPF: ");
 			ArrayList<DadosVistoria> busca = VistoriaRepository.findOne(cpf);
@@ -193,6 +196,10 @@ public class UsaTechnobike {
 				} else {
 					JOptionPane.showMessageDialog(null, "Opção incorreta");
 				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				JOptionPane.showMessageDialog(null, "Erro! Por favor tente novamente.");
+			}
 				
 				break;
 	
@@ -202,6 +209,8 @@ public class UsaTechnobike {
 				boolean cpfEncontrado = false;
 				tentativas = 0;
 				cpfInvalido = true;
+				try {
+					
 				
 				while (cpfEncontrado == false) {
 					
@@ -246,6 +255,10 @@ public class UsaTechnobike {
 					StatusVistoria andamento = new StatusVistoria();
 					andamento.resultado();
 				}
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+					JOptionPane.showMessageDialog(null, "Erro! Por favor tente novamente.");
+				}
 				
 				break;
 				
@@ -255,6 +268,8 @@ public class UsaTechnobike {
 			cpfEncontrado = false;
 			tentativas = 0;
 			cpfInvalido = true;
+			try {
+				
 			
 			while (cpfEncontrado == false) {
 				
@@ -333,6 +348,10 @@ public class UsaTechnobike {
 				opiniao.calcularMedia(tempo, servicos, problemas, atendimentos, duvidas);
 				
 				System.out.println(VistoriaRepository.saveFb(opiniao));
+			}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				JOptionPane.showMessageDialog(null, "Erro! Por favor tente novamente.");
 			}
 				
 				break;
