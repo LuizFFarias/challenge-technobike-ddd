@@ -2,6 +2,8 @@ package br.com.fiap.technobike.model.entity;
 
 import javax.swing.JOptionPane;
 
+import jakarta.validation.constraints.Positive;
+
 /*** Classe com atributos e métodos sobre os feedbacks que o cliente dará
  * Atributos sobre os tipos de feedbacks e método que envia o feedback
  * @author Rafaella Bastos
@@ -9,16 +11,31 @@ import javax.swing.JOptionPane;
  */
 
 public class Feedback {
+	@Positive
 	private int tempo;
+	@Positive
 	private int servicos;
+	@Positive
 	private int problemas;
+	@Positive
 	private int atendimentos;
+	@Positive
 	private int duvidas;
 	
 
 	// Construtor vazio
 	public Feedback() {
 
+	}
+	
+	//Construtor com passagem de parametros
+	public Feedback(@Positive int tempo, @Positive int servicos, @Positive int problemas, @Positive int atendimentos,
+			@Positive int duvidas) {
+		this.tempo = tempo;
+		this.servicos = servicos;
+		this.problemas = problemas;
+		this.atendimentos = atendimentos;
+		this.duvidas = duvidas;
 	}
 
 	// Getters e setters

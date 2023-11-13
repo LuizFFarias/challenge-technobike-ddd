@@ -40,9 +40,12 @@ public class DadosVistoria {
 	public DadosVistoria() {
 	}
 	
-	public DadosVistoria(@NotBlank String cpf, @Positive @NotNull int opcSeguro,@NotNull String bikeInteira,@NotNull String numSerie,@NotNull String roda,@NotNull String freios,
-			@NotNull String guidao,@NotNull String pedais,@NotNull String corrente,@NotNull String clienteBike,@NotNull String bikeFrente,@NotNull String acessorios,
-			@NotNull String videoBike,@NotNull String videoPartes,@NotNull String analiseVistoria) {
+	
+	public DadosVistoria(@NotBlank String cpf, @NotNull @Positive int opcSeguro, @NotNull String bikeInteira,
+			@NotNull String numSerie, @NotNull String roda, @NotNull String freios, @NotNull String guidao,
+			@NotNull String pedais, @NotNull String corrente, @NotNull String clienteBike, @NotNull String bikeFrente,
+			@NotNull String acessorios, @NotNull String videoBike, @NotNull String videoPartes,
+			@NotNull String analiseVistoria) {
 		this.cpf = cpf;
 		this.opcSeguro = opcSeguro;
 		this.bikeInteira = bikeInteira;
@@ -59,6 +62,8 @@ public class DadosVistoria {
 		this.videoPartes = videoPartes;
 		this.analiseVistoria = analiseVistoria;
 	}
+
+
 	public String getCpf() {
 		return cpf;
 	}
