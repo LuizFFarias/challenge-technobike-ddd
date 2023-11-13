@@ -16,6 +16,7 @@ public class DadosVistoria {
 	private String videoBike;
 	private String videoPartes;
 	private String analiseVistoria;
+	public Feedback feedback;
 	
 	public DadosVistoria() {
 	}

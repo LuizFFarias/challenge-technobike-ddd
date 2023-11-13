@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.fiap.technobike.model.entity.DadosVistoria;
+import br.com.fiap.technobike.model.entity.Feedback;
 
 public class VistoriaRepository extends Repository {
 	
@@ -20,18 +21,18 @@ public class VistoriaRepository extends Repository {
 					DadosVistoria dado = new DadosVistoria();
 				dado.setCpf(rs.getString("cpf"));
 				dado.setOpcSeguro(rs.getInt("opc_Seguro"));
-				dado.setBikeInteira(rs.getString("ft_bk_inteira"));
-				dado.setNumSerie(rs.getString("ft_bk_nmserie"));
-				dado.setRoda(rs.getString("ft_bk_rodas"));
-				dado.setFreios(rs.getString("ft_bk_freios"));
-				dado.setGuidao(rs.getString("ft_bk_guidao"));
-				dado.setPedais(rs.getString("ft_bk_pedais"));
-				dado.setCorrente(rs.getString("ft_bk_corrente"));
-				dado.setClienteBike(rs.getString("ft_bk_selfie"));
-				dado.setBikeFrente(rs.getString("ft_bk_frente"));
-				dado.setAcessorios(rs.getString("ft_bk_acessorio"));
-				dado.setVideoBike(rs.getString("vd_bk_geral"));
-				dado.setVideoPartes(rs.getString("vd_bk_partes"));
+				dado.setBikeInteira(rs.getString("bikeInteira"));
+				dado.setNumSerie(rs.getString("numSerie"));
+				dado.setRoda(rs.getString("roda"));
+				dado.setFreios(rs.getString("freios"));
+				dado.setGuidao(rs.getString("guidao"));
+				dado.setPedais(rs.getString("pedais"));
+				dado.setCorrente(rs.getString("corrente"));
+				dado.setClienteBike(rs.getString("clienteBike"));
+				dado.setBikeFrente(rs.getString("bikeFrente"));
+				dado.setAcessorios(rs.getString("acessorios"));
+				dado.setVideoBike(rs.getString("videoBike"));
+				dado.setVideoPartes(rs.getString("videoPartes"));
 				dado.setAnaliseVistoria(rs.getString("status_vistoria"));
 				dados.add(dado);
 				}
@@ -115,6 +116,31 @@ public class VistoriaRepository extends Repository {
 		}
 		return null;	
 	}
-	
+	public static Feedback saveFb(DadosVistoria dado, Feedback feedback) {
+		String sql = "insert into challenge_feedback values(?, ?, ?, ?, ?, ?)";
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setString(1, dado.getCpf());
+			ps.setInt(2, feedback.getTempo());
+			ps.setInt(3, feedback.getServicos());
+			ps.setInt(4, feedback.getProblemas());
+			ps.setInt(5, feedback.getAtendimentos());
+			ps.setInt(6, feedback.getDuvidas());
+			
+			if(ps.executeUpdate() > 0) {
+				return feedback;
+			}
+			else {
+				return null;
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Erro ao salvar: " + e.getMessage());
+		}
+		finally {
+			closeConnection();
+		}
+		return null;	
+	}
 
 }

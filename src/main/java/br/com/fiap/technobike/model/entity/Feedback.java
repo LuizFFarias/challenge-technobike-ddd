@@ -14,6 +14,7 @@ public class Feedback {
 	private int problemas;
 	private int atendimentos;
 	private int duvidas;
+	
 
 	// Construtor vazio
 	public Feedback() {

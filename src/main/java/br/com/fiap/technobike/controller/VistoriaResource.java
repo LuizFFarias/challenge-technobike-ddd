@@ -3,6 +3,7 @@ package br.com.fiap.technobike.controller;
 import java.util.ArrayList;
 
 import br.com.fiap.technobike.model.entity.DadosVistoria;
+import br.com.fiap.technobike.model.entity.Feedback;
 import br.com.fiap.technobike.model.repository.VistoriaRepository;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
@@ -54,6 +55,17 @@ public class VistoriaResource {
 		response.entity(resposta);
 		return response.build();
 	}
-	
+	@POST
+	@Path("/feedback")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response saveFb(@Valid Feedback feedback) {
+		DadosVistoria dado = new DadosVistoria();
+		Feedback resposta = VistoriaRepository.saveFb(dado, feedback);
+		if (resposta == null) {
+	        return Response.status(400).build();
+	    } else {
+	        return Response.created(null).entity(resposta).build();
+	    }
+	}
 	
 }
