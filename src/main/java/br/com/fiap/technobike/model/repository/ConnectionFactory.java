@@ -8,6 +8,12 @@ import java.sql.SQLException;
 import java.util.Properties;
 import java.sql.Connection;
 
+/***
+ * Classe que cria a conexão com o banco de dados
+ * @author Luiz Fillipe
+ * @version 3.0
+ */
+
 public class ConnectionFactory {
 	private static ConnectionFactory instance;
 	private Connection conexao;
@@ -22,6 +28,10 @@ public class ConnectionFactory {
 		this.pass = pass;
 		this.driver = driver;
 	}
+	/***
+	 * Método que inicia o login com o banco de dados
+	 * @author Luiz Fillipe
+	 */
 	public static ConnectionFactory getInstance() {
 		ConnectionFactory result = instance;
 		if (result != null) {
@@ -52,6 +62,11 @@ public class ConnectionFactory {
 		}
 		return null;
 }
+	
+	/***
+	 * Método que abre a conexão com o banco de dados e verifica erros de login e SQL.
+	 * @author Luiz Fillipe
+	 */
 	public Connection getConexao() {
 		try {
 			if(this.conexao != null && !this.conexao.isClosed()) {

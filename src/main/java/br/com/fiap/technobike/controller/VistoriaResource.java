@@ -17,8 +17,18 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 
+/***
+ * Classe para implementar as requisições de GET e POST para a API
+ * @author luizfillipe
+ * @version 3.0
+ */
+
 @Path("/technobike")
 public class VistoriaResource {
+	/***
+	 * Método para encontrar todos os clientes através do GET
+	 * @author luizfillipe
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response findAll() {
@@ -28,6 +38,11 @@ public class VistoriaResource {
 		return response.build();
 		
 }
+	/***
+	 * Método para encontrar os clientes através do cpf com um endpoint terminado com o cpf buscado utilizando GET
+	 * @author luizfillipe
+	 * @return codigo do status de funcionamento
+	 */
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -45,6 +60,10 @@ public class VistoriaResource {
 	        }
 		
 }
+	/***
+	 * Método para adicionar os dados necessários para a vistoria utilizando POST
+	 * @author luizfillipe
+	 */
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -60,6 +79,11 @@ public class VistoriaResource {
 		response.entity(resposta);
 		return response.build();
 	}
+	
+	/***
+	 * Método para armazenar as notas do feedback utilizando o POST com um endpoint unico de feedback
+	 * @author luizfillipe
+	 */
 	@POST
 	@Path("/feedback")
 	@Consumes(MediaType.APPLICATION_JSON)

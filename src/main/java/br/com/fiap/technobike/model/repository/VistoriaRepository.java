@@ -1,6 +1,7 @@
 package br.com.fiap.technobike.model.repository;
 
 import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -8,8 +9,19 @@ import java.util.ArrayList;
 import br.com.fiap.technobike.model.entity.DadosVistoria;
 import br.com.fiap.technobike.model.entity.Feedback;
 
+
+/***
+ * Classe responsável pela interação com o banco de dados
+ * @author Luiz Fillipe
+ * @version 3.0
+ * */
 public class VistoriaRepository extends Repository {
 	
+/***
+ * Método que realiza a busca de todos clientes cadastrados no banco de dados e na API
+ * @author Luiz Fillipe
+ * @return ArrayList dados
+ */
 	public static ArrayList<DadosVistoria> findAll(){
 		ArrayList<DadosVistoria> dados = new ArrayList<DadosVistoria>();
 		String sql = "select * from challenge_vistoria";
@@ -49,7 +61,11 @@ public class VistoriaRepository extends Repository {
 		}
 		return dados;
 	}
-	
+	/***
+	 * Método que realiza a busca dos clientes cadastrados por cpf no banco de dados e na API
+	 * @author Luiz Fillipe
+	 * @return ArrayList dados
+	 */
 	public static ArrayList<DadosVistoria> findOne(String cpf){
 		ArrayList<DadosVistoria> dados = new ArrayList<DadosVistoria>();
 		String sql = "select * from challenge_vistoria where cpf = ?";
@@ -91,6 +107,11 @@ public class VistoriaRepository extends Repository {
 		return dados;
 	}
 
+	/***
+	 * Método que realiza a inserção dos clientes e seus dados da vistoria cadastrados no banco de dados e na API
+	 * @author Luiz Fillipe
+	 * @return ArrayList dados
+	 */
 	
 	public static DadosVistoria save(DadosVistoria dado) {
 		String sql = "insert into challenge_vistoria values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Em Análise')";
@@ -125,6 +146,11 @@ public class VistoriaRepository extends Repository {
 		}
 		return null;	
 	}
+	/***
+	 * Método que realiza a inserção das notas do feedback realizado pelos clientes cadastrados no banco de dados e na API
+	 * @author Luiz Fillipe
+	 * @return ArrayList dados
+	 */
 	public static Feedback saveFb(Feedback feedback) {
 		String sql = "insert into challenge_feedback values(?, ?, ?, ?, ?)";
 		try {

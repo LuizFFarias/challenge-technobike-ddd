@@ -4,6 +4,12 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
+/***
+ *  Classe com atributos e métodos sobre os dados necessários para vistoria do usuário
+ * @author Luiz Fillipe
+ * @version 3.0
+ */
+
 public class DadosVistoria {
 	@NotBlank
 	private String cpf;
