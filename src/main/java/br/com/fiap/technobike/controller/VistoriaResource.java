@@ -70,7 +70,7 @@ public class VistoriaResource {
 	public Response save(@Valid DadosVistoria dado) {
 		DadosVistoria resposta = VistoriaRepository.save(dado);
 		ResponseBuilder response = null;
-		if(resposta == null) {
+		if(resposta != null) {
 			response = Response.created(null);
 		}
 		else {
@@ -89,11 +89,18 @@ public class VistoriaResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveFb(@Valid Feedback feedback) {
 		Feedback resposta = VistoriaRepository.saveFb(feedback);
-		if (resposta == null) {
-	        return Response.status(400).build();
+		ResponseBuilder response = null;
+		if (resposta != null) {
+	        response = Response.created(null);
 	    } else {
-	        return Response.created(null).entity(resposta).build();
+	         response = Response.status(400);
 	    }
+		response.header("Acess-Control-Allow-Origin", "*").header("Acess-Control-Allow-Credentials", "true")
+        .header("Acess-Control-Allow-Headers", "origin, content-type, accept, authorization")
+        .header("Acess-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
+		response.entity(resposta);
+		return response.build();
 	}
+
 	
 }
