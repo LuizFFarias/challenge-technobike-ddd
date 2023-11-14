@@ -37,7 +37,7 @@ public class MidiaVistoria {
 	}
 
 	public String getNumSerie() {
-		return numSerie;
+		return numSerie;	
 	}
 
 	public void setNumSerie(String numSerie) {

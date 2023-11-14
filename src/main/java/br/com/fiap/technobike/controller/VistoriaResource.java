@@ -81,7 +81,7 @@ public class VistoriaResource {
 	}
 	
 	/***
-	 * Método para armazenar as notas do feedback utilizando o POST com um endpoint unico de feedback
+	 * Método para armazenar as notas do feedbac
 	 * @author luizfillipe
 	 */
 	@POST

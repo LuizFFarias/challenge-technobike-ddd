@@ -30,7 +30,7 @@ public abstract class Repository {
 	}
 	
 	/***
-	 * Método que fecha a conexão com o banco de dados
+	 * Método que fecha conexão com o banco de dados
 	 * @author Luiz Fillipe
 	 */
 	public static void closeConnection() {
