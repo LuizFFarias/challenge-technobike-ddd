@@ -34,9 +34,9 @@ public class VistoriaResource {
 	public Response findAll() {
 		ArrayList<DadosVistoria> resposta = VistoriaRepository.findAll();
 		ResponseBuilder response = Response.ok();
-		response.header("Acess-Control-Allow-Origin", "*").header("Acess-Control-Allow-Credentials", "true")
-        .header("Acess-Control-Allow-Headers", "origin, content-type, accept, authorization")
-        .header("Acess-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
+		response.header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Credentials", "true")
+        .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+        .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
 		response.entity(resposta);
 		return response.build();
 		
@@ -55,16 +55,16 @@ public class VistoriaResource {
 		  if (resposta != null && !resposta.isEmpty()) {
 	            System.out.println("Cpf encontrado");
 	            ResponseBuilder response = Response.ok(resposta, MediaType.APPLICATION_JSON);
-	            response.header("Acess-Control-Allow-Origin", "*").header("Acess-Control-Allow-Credentials", "true")
-	            .header("Acess-Control-Allow-Headers", "origin, content-type, accept, authorization")
-	            .header("Acess-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
+	            response.header("Acess-Control-Allow-Origin", "*").header("Access-Control-Allow-Credentials", "true")
+	            .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
 	            return response.build();
 	        } else {
 	        	System.out.println("Cliente não encontrado");
 	            ResponseBuilder response = Response.status(404);
-	            response.header("Acess-Control-Allow-Origin", "*").header("Acess-Control-Allow-Credentials", "true")
-	            .header("Acess-Control-Allow-Headers", "origin, content-type, accept, authorization")
-	            .header("Acess-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
+	            response.header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Credentials", "true")
+	            .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
 	            return response.build();
 	        }
 		
@@ -85,9 +85,9 @@ public class VistoriaResource {
 		else {
 			response = Response.status(400);
 		}
-		response.header("Acess-Control-Allow-Origin", "*").header("Acess-Control-Allow-Credentials", "true")
-        .header("Acess-Control-Allow-Headers", "origin, content-type, accept, authorization")
-        .header("Acess-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
+		response.header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Credentials", "true")
+        .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+        .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
 		response.entity(resposta);
 		return response.build();
 	}
@@ -107,9 +107,9 @@ public class VistoriaResource {
 	    } else {
 	         response = Response.status(400);
 	    }
-		response.header("Acess-Control-Allow-Origin", "*").header("Acess-Control-Allow-Credentials", "true")
-        .header("Acess-Control-Allow-Headers", "origin, content-type, accept, authorization")
-        .header("Acess-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
+		response.header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Credentials", "true")
+        .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+        .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
 		response.entity(resposta);
 		return response.build();
 	}
