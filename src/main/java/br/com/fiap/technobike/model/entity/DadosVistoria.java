@@ -46,7 +46,6 @@ public class DadosVistoria {
 	public DadosVistoria() {
 	}
 	
-	
 	public DadosVistoria(@NotBlank String cpf, @NotNull @Positive int opcSeguro, @NotNull String bikeInteira,
 			@NotNull String numSerie, @NotNull String roda, @NotNull String freios, @NotNull String guidao,
 			@NotNull String pedais, @NotNull String corrente, @NotNull String clienteBike, @NotNull String bikeFrente,
@@ -69,88 +68,115 @@ public class DadosVistoria {
 		this.analiseVistoria = analiseVistoria;
 	}
 
-
+	//Getters e setters
 	public String getCpf() {
 		return cpf;
-	}
+ 	}
+
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+	
 	public int getOpcSeguro() {
 		return opcSeguro;
 	}
+	
 	public void setOpcSeguro(int opcSeguro) {
 		this.opcSeguro = opcSeguro;
 	}
+	
 	public String getBikeInteira() {
 		return bikeInteira;
 	}
+	
 	public void setBikeInteira(String bikeInteira) {
 		this.bikeInteira = bikeInteira;
 	}
+	
 	public String getNumSerie() {
 		return numSerie;
 	}
+	
 	public void setNumSerie(String numSerie) {
 		this.numSerie = numSerie;
 	}
+	
 	public String getRoda() {
 		return roda;
 	}
+	
 	public void setRoda(String roda) {
 		this.roda = roda;
 	}
+	
 	public String getFreios() {
 		return freios;
 	}
+	
 	public void setFreios(String freios) {
 		this.freios = freios;
 	}
+	
 	public String getGuidao() {
 		return guidao;
 	}
+	
 	public void setGuidao(String guidao) {
 		this.guidao = guidao;
 	}
+	
 	public String getPedais() {
 		return pedais;
 	}
+	
 	public void setPedais(String pedais) {
 		this.pedais = pedais;
 	}
+	
 	public String getCorrente() {
 		return corrente;
 	}
+	
 	public void setCorrente(String corrente) {
 		this.corrente = corrente;
 	}
+	
 	public String getClienteBike() {
 		return clienteBike;
 	}
+	
 	public void setClienteBike(String clienteBike) {
 		this.clienteBike = clienteBike;
 	}
+	
 	public String getBikeFrente() {
 		return bikeFrente;
 	}
+	
 	public void setBikeFrente(String bikeFrente) {
 		this.bikeFrente = bikeFrente;
 	}
+	
 	public String getAcessorios() {
 		return acessorios;
 	}
+	
 	public void setAcessorios(String acessorios) {
 		this.acessorios = acessorios;
 	}
+	
 	public String getVideoBike() {
 		return videoBike;
 	}
+	
 	public void setVideoBike(String videoBike) {
 		this.videoBike = videoBike;
 	}
+	
 	public String getVideoPartes() {
 		return videoPartes;
 	}
+	
 	public void setVideoPartes(String videoPartes) {
 		this.videoPartes = videoPartes;
 	}
