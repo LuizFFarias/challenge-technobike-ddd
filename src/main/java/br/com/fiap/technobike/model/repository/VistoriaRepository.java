@@ -25,9 +25,11 @@ public class VistoriaRepository extends Repository {
 	public static ArrayList<DadosVistoria> findAll(){
 		ArrayList<DadosVistoria> dados = new ArrayList<DadosVistoria>();
 		String sql = "select * from challenge_vistoria";
+		
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
+		
 			if (rs != null) {
 				while (rs.next()) {
 					DadosVistoria dado = new DadosVistoria();
@@ -69,10 +71,12 @@ public class VistoriaRepository extends Repository {
 	public static ArrayList<DadosVistoria> findOne(String cpf){
 		ArrayList<DadosVistoria> dados = new ArrayList<DadosVistoria>();
 		String sql = "select * from challenge_vistoria where cpf = ?";
+		
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setString(1, cpf);
 			ResultSet rs = ps.executeQuery();
+		
 			if (rs != null) {
 				while (rs.next()) {
 					DadosVistoria dado = new DadosVistoria();
@@ -92,8 +96,7 @@ public class VistoriaRepository extends Repository {
 					dado.setVideoPartes(rs.getString("videoPartes"));
 					dado.setAnaliseVistoria(rs.getString("status_vistoria"));
 				dados.add(dado);
-				}
-				
+				}	
 			}
 			else {
 				return null;
@@ -176,5 +179,4 @@ public class VistoriaRepository extends Repository {
 		}
 		return null;	
 	}
-
 }
