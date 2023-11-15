@@ -8,6 +8,7 @@ import br.com.fiap.technobike.model.repository.VistoriaRepository;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.OPTIONS;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
@@ -81,17 +82,9 @@ public class VistoriaResource {
 		ResponseBuilder response = null;
 		if(resposta != null) {
 			response = Response.created(null);
-			response.header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Credentials", "true")
-	        .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
-	        .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
-			response.entity(resposta);
 		}
 		else {
 			response = Response.status(400);
-			response.header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Credentials", "true")
-	        .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
-	        .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
-			response.entity(resposta);
 		}
 		response.header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Credentials", "true")
         .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
@@ -121,6 +114,16 @@ public class VistoriaResource {
 		response.entity(resposta);
 		return response.build();
 	}
+	@OPTIONS
+	public Response options() {
+	    return Response.ok()
+	        .header("Access-Control-Allow-Origin", "*")
+	        .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+	        .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+	        .header("Access-Control-Allow-Credentials", "true")
+	        .build();
+	}
+
 
 	
 }
