@@ -49,7 +49,13 @@
 	<dependency>
 			<groupId>org.glassfish.jersey.ext</groupId>
 			<artifactId>jersey-bean-validation</artifactId>
-			</dependency>
+	</dependency>
+	 <dependency>
+        <groupId>com.oracle.database.jdbc</groupId>
+        <artifactId>ojdbc8</artifactId>
+        <version>19.12.0.0</version> <!-- Verifique a versão mais recente no site do Oracle -->
+    </dependency>
+	
     </dependencies>
 
     <build>

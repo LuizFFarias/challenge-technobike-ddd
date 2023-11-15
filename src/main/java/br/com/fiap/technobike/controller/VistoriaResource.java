@@ -55,7 +55,7 @@ public class VistoriaResource {
 		  if (resposta != null && !resposta.isEmpty()) {
 	            System.out.println("Cpf encontrado");
 	            ResponseBuilder response = Response.ok(resposta, MediaType.APPLICATION_JSON);
-	            response.header("Acess-Control-Allow-Origin", "*").header("Access-Control-Allow-Credentials", "true")
+	            response.header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Credentials", "true")
 	            .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
 	            return response.build();
@@ -81,9 +81,17 @@ public class VistoriaResource {
 		ResponseBuilder response = null;
 		if(resposta != null) {
 			response = Response.created(null);
+			response.header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Credentials", "true")
+	        .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+	        .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
+			response.entity(resposta);
 		}
 		else {
 			response = Response.status(400);
+			response.header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Credentials", "true")
+	        .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+	        .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
+			response.entity(resposta);
 		}
 		response.header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Credentials", "true")
         .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
